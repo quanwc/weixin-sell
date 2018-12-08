@@ -12,8 +12,10 @@
 - 微信相关特性：扫码登录、模板消息推送、微信支付和退款
 ##### 功能分析：
 - 买家（微信端），是一个基于微信服务号点餐<br>
-- 卖家（PC端），是一个后台管理系统
-![image](src/main/resources/images/image1.jpg)
+- 卖家（PC端），是一个后台管理系统<br>
+功能关系图：
+![image](src/main/resources/images/image1.jpg)<br>
+部署架构图：
 ![image](src/main/resources/images/image2.jpg)
 
 
@@ -37,10 +39,3 @@
     Nginx 1.11.7
     开发环境 Linux
     部署环境 centos7.3
-
-
->### 主要功能：
-- 自定义菜单
-- 文本消息的自动回复
-- 红包功能：用户在"格隆汇"服务号中，输入兑换码，服务号后台给用户发送红包的行为
-- 其他：限流策略、防止恶意攻击
