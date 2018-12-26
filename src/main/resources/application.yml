@@ -1,0 +1,14 @@
+
+
+# mysql
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/weixin?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: cqmyg@212406
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+server:
+  context-path: /sell
