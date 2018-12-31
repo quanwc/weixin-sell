@@ -10,6 +10,8 @@ import lombok.Getter;
 @Getter
 public enum ExceptionResultEnum {
 
+	PARAM_ERROR(1, "参数错误"),
+
 	PRODUCT_NOT_EXIST(10, "商品不存在"),
 
 	PRODUCT_STOCK_ERROR(11, "商品库存错误"),
@@ -25,6 +27,8 @@ public enum ExceptionResultEnum {
 	ORDER_DETAIL_EMPTY(16, "订单详情为空"),
 
 	ORDER_PAY_STATUS_ERROR(17, "订单支付状态错误"),
+
+	SHOP_CAR_EMPTY_ERROR(18, "购物车不能为空"),
 
 	;
 

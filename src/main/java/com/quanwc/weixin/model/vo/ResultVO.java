@@ -1,5 +1,6 @@
 package com.quanwc.weixin.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
  * @date 2018/12/15 23:15:23
  */
 @Data
+// @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultVO<T> {
 
 	/**

@@ -1,5 +1,6 @@
 package com.quanwc.weixin.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.quanwc.weixin.model.vo.ResultVO;
 
 /**

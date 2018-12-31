@@ -19,7 +19,7 @@ import com.quanwc.weixin.model.vo.ResultVO;
 import com.quanwc.weixin.service.ProductInfoService;
 
 /**
- * 商品买家端controller
+ * 买家端商品controller
  * @author quanwenchao
  * @date 2018/12/15 23:13:04
  */

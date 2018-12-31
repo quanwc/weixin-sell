@@ -6,8 +6,11 @@ import java.util.List;
 
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.quanwc.weixin.model.entity.OrderDetailDO;
 
+import com.quanwc.weixin.util.serializer.Date2LongSerializer;
 import lombok.Data;
 
 /**
@@ -16,6 +19,9 @@ import lombok.Data;
  * @date 2018/12/25 11:15:17
  */
 @Data
+// @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL) // 属性值为null的话，该属性就不返回了。
+// eg：orderDetailDOList为null的话，改属性就不返回了
+// @JsonInclude(JsonInclude.Include.NON_NULL) // 只对当前类生效，我们可以在配置文件设置全局配置，来对所有类都生效
 public class OrderMasterDTO {
 	/**
 	 * 订单id
@@ -61,11 +67,13 @@ public class OrderMasterDTO {
 	/**
 	 * 创建时间
 	 */
+	@JsonSerialize(using = Date2LongSerializer.class)
 	private Date createTimestamp;
 
 	/**
 	 * 更新时间
 	 */
+	@JsonSerialize(using = Date2LongSerializer.class)
 	private Date updateTimestamp;
 
 	/**
