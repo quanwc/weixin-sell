@@ -30,6 +30,12 @@ public enum ExceptionResultEnum {
 
 	SHOP_CAR_EMPTY_ERROR(18, "购物车不能为空"),
 
+	ORDER_OWNER_ERROR(19, "该订单不属于当前用户"),
+
+	WECHAT_MP_ERROR(21, "微信授权错误"),
+
+	WXPAY_NOTIFY_MONEY_VERIFY_ERROR(22, "微信支付异步通知金额校验不通过"),
+
 	;
 
 	private Integer code;

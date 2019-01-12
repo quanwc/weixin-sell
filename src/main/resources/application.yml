@@ -14,3 +14,12 @@ spring:
     default-property-inclusion: non_null
 server:
   context-path: /sell
+
+
+wechat:
+  mpAppId: wxb7855b4907d34564
+  mpAppSecret: 0cae0c81c3d001b0cf35a0da8fa4950f
+  mchId: 111
+  mchKey: 222
+  keyPath: /var/weixin_path/h5.p12
+  notifyUrl: http://xxx.cc/sell/pay/notify

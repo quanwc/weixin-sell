@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.quanwc.weixin.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +39,8 @@ public class BuyerOrderController {
 
 	@Autowired
 	private OrderMasterService orderMasterService;
+	@Autowired
+	private BuyerService buyerService;
 
 	/**
 	 * 创建订单
@@ -103,9 +106,7 @@ public class BuyerOrderController {
 	@GetMapping("/detail")
 	public ResultVO<OrderMasterDTO> detail(@RequestParam("openid") String openid,
 			@RequestParam("orderId") String orderId) {
-
-		// TODO 不安全的做法，改进
-		OrderMasterDTO orderMasterDTO = orderMasterService.findOne(orderId);
+		OrderMasterDTO orderMasterDTO = buyerService.findOrderOne(openid, orderId);
 		return ResultVOUtil.success(orderMasterDTO);
 	}
 
@@ -115,12 +116,7 @@ public class BuyerOrderController {
 	@PostMapping("/cancel")
 	public ResultVO cancal(@RequestParam("openid") String openid,
 			@RequestParam("orderId") String orderId) {
-
-		// TODO 不安全的做法，改进
-		// 先查，再取消
-		OrderMasterDTO orderMasterDTO = orderMasterService.findOne(orderId);
-
-		orderMasterService.cancel(orderMasterDTO);
+		buyerService.cancelOrder(openid, orderId);
 		return ResultVOUtil.success();
 	}
 }

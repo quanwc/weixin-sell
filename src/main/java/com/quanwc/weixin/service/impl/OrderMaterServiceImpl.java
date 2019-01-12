@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import com.quanwc.weixin.service.PayService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,6 +50,8 @@ public class OrderMaterServiceImpl implements OrderMasterService {
 	private OrderDetailRepository orderDetailRepository;
 	@Autowired
 	private OrderMasterRepository orderMasterRepository;
+	@Autowired
+	private PayService payService;
 
 	/**
 	 * 创建订单
@@ -181,9 +184,9 @@ public class OrderMaterServiceImpl implements OrderMasterService {
 
 		// step4：如果已支付，需要退款
 		if (orderMasterDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-			// TODO
+			payService.refund(orderMasterDTO);
 		}
-		return orderMasterDTO;
+		return orderMasterDTO ;
 	}
 
 	/**
@@ -244,5 +247,17 @@ public class OrderMaterServiceImpl implements OrderMasterService {
 			throw new SellException(ExceptionResultEnum.ORDER_UPDATE_FAIL);
 		}
 		return orderMasterDTO;
+	}
+
+
+	@Override
+	public Page<OrderMasterDTO> findList(Pageable pageable) {
+		Page<OrderMasterDO> orderMasterPage = orderMasterRepository.findAll(pageable);
+
+		List<OrderMasterDTO> orderMasterDTOList = OrderMaster2OrderMasterDTOConverter
+				.orderMasterDOList2OrderMasterDTOList(orderMasterPage.getContent());
+
+		return new PageImpl<OrderMasterDTO>(orderMasterDTOList, pageable,
+				orderMasterPage.getTotalElements());
 	}
 }
