@@ -1,11 +1,19 @@
 package com.quanwc.weixin.model.entity;
 
-import lombok.Data;
+import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.math.BigDecimal;
+
+import org.hibernate.annotations.DynamicUpdate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quanwc.weixin.enumerator.ProductStatusEnum;
+import com.quanwc.weixin.util.EnumUtil;
+
+import lombok.Data;
 
 /**
  * 商品详情
@@ -15,6 +23,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "product_info")
 @Data
+@DynamicUpdate
 public class ProductInfo {
 
 	/**
@@ -49,13 +58,28 @@ public class ProductInfo {
 	private String productIcon;
 
 	/**
-	 * 商品状态：0正常1下架
+	 * 商品状态：0上架1下架
 	 */
-	private Integer productStatus;
+	private Integer productStatus = ProductStatusEnum.UP.getCode();
 
 	/**
 	 * 类目编号
 	 */
 	private Integer categoryType;
 
+	/**
+	 * 创建时间
+	 */
+	private Date createTimestamp;
+
+	/**
+	 * 修改时间
+	 */
+	private Date updateTimestamp;
+
+
+	@JsonIgnore
+	public ProductStatusEnum getProductStatusEnum() {
+		return EnumUtil.getEnumByCode(productStatus, ProductStatusEnum.class);
+	}
 }

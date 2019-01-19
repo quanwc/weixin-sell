@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * 商品类目do
@@ -17,6 +18,7 @@ import javax.persistence.*;
 @Table(name = "product_category") //@Table来指定和哪个数据表对应;如果省略默认表名就是product_category
 @DynamicUpdate
 public class ProductCategoryDO {
+
 	/**
 	 * 类目id
 	 */
@@ -37,17 +39,15 @@ public class ProductCategoryDO {
 	/**
 	 * 创建时间
 	 */
-	//private Date createTimestamp;
-
-	public ProductCategoryDO() {
-	}
+	private Date createTimestamp;
 
 	/**
 	 * 修改时间
 	 */
-	//private Date updateTimestamp;
+	private Date updateTimestamp;
 
-
+	public ProductCategoryDO() {
+	}
 
 	public ProductCategoryDO(String categoryName, Integer categoryType) {
 		this.categoryName = categoryName;

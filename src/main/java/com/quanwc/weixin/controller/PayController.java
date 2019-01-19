@@ -1,12 +1,7 @@
 package com.quanwc.weixin.controller;
 
-import com.lly835.bestpay.model.PayResponse;
-import com.quanwc.weixin.enumerator.ExceptionResultEnum;
-import com.quanwc.weixin.exception.SellException;
-import com.quanwc.weixin.model.dto.OrderMasterDTO;
-import com.quanwc.weixin.service.OrderMasterService;
-import com.quanwc.weixin.service.PayService;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Map;
+import com.lly835.bestpay.model.PayResponse;
+import com.quanwc.weixin.enumerator.ExceptionResultEnum;
+import com.quanwc.weixin.exception.SellException;
+import com.quanwc.weixin.model.dto.OrderMasterDTO;
+import com.quanwc.weixin.service.OrderMasterService;
+import com.quanwc.weixin.service.PayService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 支付controller
- *
  * @author quanwenchao
  * @date 2019/1/8 21:19:05
  */

@@ -6,12 +6,17 @@ import java.util.List;
 
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.quanwc.weixin.enumerator.OrderStatusEnum;
+import com.quanwc.weixin.enumerator.PayStatusEnum;
 import com.quanwc.weixin.model.entity.OrderDetailDO;
 
+import com.quanwc.weixin.util.EnumUtil;
 import com.quanwc.weixin.util.serializer.Date2LongSerializer;
 import lombok.Data;
+import org.aopalliance.reflect.Code;
 
 /**
  * 订单主表dto
@@ -80,4 +85,18 @@ public class OrderMasterDTO {
 	 * 订单详情
 	 */
 	List<OrderDetailDO> orderDetailDOList;
+
+	// 在OrderMasterDTO类中写两个方法、来获取OrderStatusEnum、PayStatusEnum
+
+	@JsonIgnore
+	public OrderStatusEnum getOrderStatusEnum() {
+		// return OrderStatusEnum.getOrderStatusEnum(orderStatus);
+		return EnumUtil.getEnumByCode(orderStatus, OrderStatusEnum.class);
+	}
+
+	@JsonIgnore
+	public PayStatusEnum getPayStatusEnum() {
+		// return PayStatusEnum.getPayStatusEnum(payStatus);
+		return EnumUtil.getEnumByCode(payStatus, PayStatusEnum.class);
+	}
 }

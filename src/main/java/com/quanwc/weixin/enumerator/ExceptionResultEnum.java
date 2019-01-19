@@ -10,11 +10,15 @@ import lombok.Getter;
 @Getter
 public enum ExceptionResultEnum {
 
+	SUCCESS(0, "成功"),
+
 	PARAM_ERROR(1, "参数错误"),
 
-	PRODUCT_NOT_EXIST(10, "商品不存在"),
+	PRODUCT_NOT_EXIST(9, "商品不存在"),
 
-	PRODUCT_STOCK_ERROR(11, "商品库存错误"),
+	PRODUCT_STOCK_ERROR(10, "商品库存错误"),
+
+	PRODUCT_STATUS_ERROR(11, "商品状态错误"),
 
 	ORDER_NOT_EXIST(12, "订单不存在"),
 
@@ -35,6 +39,10 @@ public enum ExceptionResultEnum {
 	WECHAT_MP_ERROR(21, "微信授权错误"),
 
 	WXPAY_NOTIFY_MONEY_VERIFY_ERROR(22, "微信支付异步通知金额校验不通过"),
+
+	ORDER_CANCEL_SUCCESS(23, "订单取消成功"),
+
+	ORDER_FINISH_SUCCESS(24, "订单完结成功"),
 
 	;
 

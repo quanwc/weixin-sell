@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import com.quanwc.weixin.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.CollectionUtils;
@@ -28,7 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 买家端订单controller
- *
  * @author quanwenchao
  * @date 2018/12/29 14:47:26
  */
