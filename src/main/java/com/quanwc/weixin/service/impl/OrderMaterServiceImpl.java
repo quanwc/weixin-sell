@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
-import com.quanwc.weixin.service.PayService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,8 +28,7 @@ import com.quanwc.weixin.model.entity.OrderMasterDO;
 import com.quanwc.weixin.model.entity.ProductInfo;
 import com.quanwc.weixin.repository.OrderDetailRepository;
 import com.quanwc.weixin.repository.OrderMasterRepository;
-import com.quanwc.weixin.service.OrderMasterService;
-import com.quanwc.weixin.service.ProductInfoService;
+import com.quanwc.weixin.service.*;
 import com.quanwc.weixin.util.KeyUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +50,10 @@ public class OrderMaterServiceImpl implements OrderMasterService {
 	private OrderMasterRepository orderMasterRepository;
 	@Autowired
 	private PayService payService;
+	@Autowired
+	private PushMessageService pushMessageService;
+	@Autowired
+	private WebSocketService webSocketService;
 
 	/**
 	 * 创建订单
@@ -104,6 +106,9 @@ public class OrderMaterServiceImpl implements OrderMasterService {
 				.map(e -> new ShopCartDTO(e.getProductId(), e.getProductQuantity()))
 				.collect(Collectors.toList());
 		productInfoService.decreaseStock(cartDTOList);
+
+		// 发送websocket消息
+		webSocketService.sendMessage("有新订单");
 
 		return orderMasterDTO;
 	}
@@ -213,6 +218,10 @@ public class OrderMaterServiceImpl implements OrderMasterService {
 			log.error("[完结订单] 更新失败, orderMaster={}", orderMaster);
 			throw new SellException(ExceptionResultEnum.ORDER_UPDATE_FAIL);
 		}
+
+		// 推送微信模板消息
+		pushMessageService.orderStatusMessage(orderMasterDTO);
+
 		return orderMasterDTO;
 	}
 

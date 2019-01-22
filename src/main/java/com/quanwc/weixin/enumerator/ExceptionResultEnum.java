@@ -44,6 +44,10 @@ public enum ExceptionResultEnum {
 
 	ORDER_FINISH_SUCCESS(24, "订单完结成功"),
 
+	LOGIN_FAIL(25, "登录失败，登录信息不正确"),
+
+	LOGOUT_SUCCESS(26, "登录成功"),
+
 	;
 
 	private Integer code;

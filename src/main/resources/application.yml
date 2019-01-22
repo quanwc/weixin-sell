@@ -12,14 +12,28 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
 server:
   context-path: /sell
 
-
 wechat:
+  # 微信公众平台：mp.weixin.qq.com
   mpAppId: wxb7855b4907d34564
   mpAppSecret: 0cae0c81c3d001b0cf35a0da8fa4950f
   mchId: 111
   mchKey: 222
   keyPath: /var/weixin_path/h5.p12
   notifyUrl: http://xxx.cc/sell/pay/notify
+  # 微信开放平台：open.weixin.qq.com
+  openAppId: wxb78xxx
+  openAppSecret: 0caexxxxx
+  templateId:
+    orderStatus: xxxtemplateId
+
+projectUrl:
+  wechatMpAuthorize: http://sell.natapp4.cc
+  wechatOpenAuthorize: http://sell.natapp4.cc
+  sell: http://127.0.0.1:8080

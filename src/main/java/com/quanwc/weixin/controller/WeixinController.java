@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * 微信controller（暂时不用）
  * @author quanwenchao
  * @date 2019/1/5 14:10:20
  */

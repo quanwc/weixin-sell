@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
- * 微信config
+ * 微信公众平台config
  *
  * @author quanwenchao
  * @date 2019/1/5 15:29:38
