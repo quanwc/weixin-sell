@@ -48,6 +48,8 @@ public enum ExceptionResultEnum {
 
 	LOGOUT_SUCCESS(26, "登录成功"),
 
+	SEC_KILL_ERROR(27, "唉吆喂，人也太多了吧"),
+
 	;
 
 	private Integer code;

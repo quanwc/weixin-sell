@@ -3,10 +3,14 @@ package com.quanwc.weixin.handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.quanwc.weixin.config.ProjectUrlConfig;
+import com.quanwc.weixin.exception.SellException;
 import com.quanwc.weixin.exception.SellerAuthorizeException;
+import com.quanwc.weixin.model.vo.ResultVO;
+import com.quanwc.weixin.util.ResultVOUtil;
 
 /**
  * 异常处理器
@@ -36,4 +40,16 @@ public class SellExceptionHandler {
 		// .concat("/sell/wechat/qrAuthorize").concat("?returnUrl=")
 		// .concat(projectUrlConfig.getSell().concat("/sell/seller/user/login")));
 	}
+
+	/**
+	 * 处理SellException这个异常
+	 * @param e
+	 * @return
+	 */
+	@ExceptionHandler(SellException.class)
+	@ResponseBody
+	public ResultVO handleSellException(SellException e) {
+		return ResultVOUtil.error(e.getCode(), e.getMessage());
+	}
+
 }
